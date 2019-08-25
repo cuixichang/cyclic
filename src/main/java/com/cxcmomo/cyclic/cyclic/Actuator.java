@@ -175,35 +175,10 @@ public abstract class Actuator {
                 long interval = getNode(operatorTop, currentTimeMillisecond);
                 //等待时间 > 周期时间
                 if (interval >= writeCyclic) {
-                    //最小周期
-                    if(i == 0){
-                        //ok
-                        xmlStructureCache.setOrgMessage(initParamCache.getSuccessMessage());
-                        xmlStructureCache.setCoolingSecond(0L);
-                        obj =  orgMessage(true,xmlStructureCache);
-                        break;
-                    }else {
-                        //遍历前面周期，检查最小周期是
-                        for(int j= i-1; j>-1; j--){
-                            Frequency tipIndexj = frequency.get(j);
-                            int operatorTopj = tipIndexj.getNum();
-                            long writeCyclicj = tipIndexj.getCooling() * 1000;
-                            if(cacheCount/operatorTopj == 0){
-                                long intervalj = getNode(operatorTopj, currentTimeMillisecond);
-                                if(intervalj > writeCyclicj){
-                                    xmlStructureCache.setOrgMessage(tipIndexj.getMessage());
-                                    xmlStructureCache.setCoolingSecond(intervalj-writeCyclic);
-                                    obj =  orgMessage(false,xmlStructureCache);
-                                    break;
-                                }
-                            }
-                        }
-
-                        xmlStructureCache.setCoolingSecond(0L);
-                        xmlStructureCache.setOrgMessage(initParamCache.getSuccessMessage());
-                        obj =  orgMessage(true,xmlStructureCache);
-                        break;
-                    }
+                   v xmlStructureCache.setOrgMessage(initParamCache.getSuccessMessage());
+                    xmlStructureCache.setCoolingSecond(0L);
+                    obj =  orgMessage(true,xmlStructureCache);
+                    break;
                 } else {
                     //冷却时间
                     xmlStructureCache.setOrgMessage(tipIndex.getMessage());
